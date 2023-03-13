@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <input type="text">
+    <button>搜索</button>
+
+
+
+    <script>
+        /*
+            down事件先发生
+            press发生在文本被输入
+            up发生在文本输入完成
+
+            code：特定于键盘上的按键的物理位置(不区分大小写)
+            key：字符("a","A")，对于非字符的按键通常与code值相同
+        */
+        var inputEl = document.querySelector("input")
+        var btnEl = document.querySelector("button")
+
+        // inputEl.onkeydown = function() {
+        //     console.log("keydown")
+        // }
+
+        // inputEl.onkeypress = function() {
+        //     console.log("keypress")
+        // }
+
+        // inputEl.onkeyup = function(event) {
+        //     console.log(event.key, event.code)
+        // }
+
+        // 搜索功能
+        btnEl.onclick = function() {
+            console.log("进行搜索", inputEl.value)
+        }
+
+        inputEl.onkeyup = function(event) {
+            if (event.code === "Enter") {
+                console.log("进行搜索", inputEl.value)
+            }
+        }
+
+        // 按下s键，搜索自动获取焦点
+        document.onkeyup = function(event) {
+            if (event.code === "KeyS") {
+                inputEl.focus()     // 获取焦点
+            }
+        }
+    </script>
+</body>
+</html>

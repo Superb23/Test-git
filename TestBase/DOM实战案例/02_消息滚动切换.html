@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .tip-bar {
+            display: inline-flex;
+            align-items: center;
+            height: 30px;
+            background-color: rgba(0, 0, 0, .4);
+            border-radius: 16px;
+        }
+
+        img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+
+        span {
+            font-size: 13px;
+            color: white;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="tip-bar">
+        <img src="https://bfs.biyao.com/group1/M01/A2/67/rBACVGA_iOuAYaTxAAAPbted3yE165.png" alt="">
+        <span>158****5528对这件商品感兴趣</span>
+    </div>
+
+
+
+
+    <script>
+        // 1.从服务器拿到数据ajax/fetch  -> promise请求
+        let tipList = [
+            {
+                icon: 'https://bfs.biyao.com/group1/M01/A2/67/rBACVGA_iOuAYaTxAAAPbted3yE165.png',
+                title: '123****3210对这件商品感兴趣'
+            },
+            {
+                icon: 'https://bfs.biyao.com/group1/M01/A6/97/rBACYWBCHqyAFH5tAAANZXX5Eww646.png',
+                title: '134****6789对这件商品感兴趣'
+            }
+        ]
+        
+        // 2.动态切换数据
+        var tipBar = document.querySelector(".tip-bar")
+        var imgEl = tipBar.querySelector("img")
+        var spanEl = tipBar.querySelector("span")
+        
+        // 3秒切换一次数据
+        var currentIndex = 0    // 记录当前展示到的索引位置
+        setInterval(() => {
+            currentIndex %= tipList.length
+            var tipItem = tipList[currentIndex++]
+            imgEl.src = tipItem.icon
+            spanEl.textContent = tipItem.title
+        }, 1000);
+
+
+    </script>
+</body>
+</html>

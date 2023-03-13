@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+        // 1.对象字面量     键值对(key, value)
+        var obj1 = {
+            name: "superb",
+            age: 18,
+            dance: function() {
+                console.log("dancing")
+            }
+        }
+
+        // 2.new Object()
+        var obj2 = new Object()
+        obj2.name = "superb"
+        obj2.age = 30
+
+        // 3.new 其他类()
+        function Person() {}
+        var obj3 = new Person()
+
+
+
+
+        // 案例     体现JavaScript的动态特性
+        var foo = {
+            name: "superb",
+            age: 18,
+            eat: function() {
+                console.log("eating food")
+            },
+            parent: {
+              name: "kobe",
+              age:30
+            }
+        }
+        // 添加属性
+        foo.height = 1.75
+        foo.weight = 130
+        foo.study = function() {
+            console.log("come on, baby")
+        }
+        // 删除属性
+        delete foo.age
+
+
+        // 不同写法，效果一致
+        {
+            foo.age
+            foo["age"]
+        }
+
+
+        //遍历对象
+        // 1.for
+        var fooKeys = Object.keys(foo)
+        for (var i = 0; i < fooKeys.length; i++) {
+            var key = fooKeys[i]
+            var value = foo[key]
+            console.log(`key:${key}, value:${value}`)
+        }
+
+        // 2.for...in...
+        for (var key in foo) {
+            var value = foo[key]
+            console.log(`key:${key}, value:${value}`)
+        }
+
+        // for...of...  默认不能遍历对象
+
+    </script>
+    
+</body>
+</html>

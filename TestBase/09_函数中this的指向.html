@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+
+        // 情况一：如果普通函数被默认调用，那么this指向window
+        function foo(name, age) {
+            console.log(arguments)
+            console.log(this)
+        }
+        foo("superb", 18)
+
+        // 情况二：如果函数被某一个对象引用且调用它，那么this会指向这个对象
+        var obj = {
+            name: "superb",
+            running: function() {
+                console.log(obj)
+                console.log(this)
+                console.log(obj === this)
+            }
+        }
+        obj.running()
+
+        // 考验一   fn存储的是running方法在堆内存中的地址，fn()是普通函数被默认调用
+        var fn = obj.running
+        fn()    //this指向window
+
+
+
+
+        // this在开发中的作用   this代表当前调用的对象
+        // 以默认方式调用一个函数，this指向window
+        // 通过对象调用，this指向调用的对象
+        var info = {
+            name: "superb",
+            age: 18,
+            running: function() {
+                console.log("running~", this.name)
+            },
+            eating: function() {
+                console.log("eating~", this.name)
+            },
+            studying: function() {
+                console.log("studying~", this.name)
+            }
+        }
+
+        info.running()
+        info.eating()
+        info.studying()
+
+
+
+
+    </script>
+</body>
+</html>

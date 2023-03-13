@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <a href="https://baidu.com">百度一下</a>
+    <button class="open">百度</button>
+    <button class="close">关闭窗口</button>
+
+
+    <script>
+        /*
+            window  
+            视角1:全局变量-> globalThis
+            视角2:浏览器窗口
+
+            var定义的变量都会被添加到window对象中
+        */
+
+        console.log(window === globalThis)
+
+
+        var openBtnEl = document.querySelector(".open")
+        openBtnEl.onclick = function() {
+            window.open("https://baidu.com", "_blank")
+        }
+
+        var closeBtnEl = document.querySelector(".close")
+        closeBtnEl.onclick = function() {
+            window.close()  // 只能关闭由window调用打开的新窗口(此处关闭不了)
+        }
+
+        // 常见的事件
+        window.onfocus = function() {
+            console.log("窗口获取到焦点")
+        }
+        window.onblur = function() {
+            console.log("窗口失去焦点")
+        }
+
+        // window.onhashchange = function() {  // hash值发生改变，用于前端路由
+            
+        // }
+
+    </script>
+</body>
+</html>

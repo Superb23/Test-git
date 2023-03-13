@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .box {
+            display: flex;
+            width: 200px;
+            height: 200px;
+            background-color: orange;
+        }
+
+        .sbox {
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+        }
+
+        .btn {
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="box">
+        <span class="sbox">
+            <button class="btn">按钮</button>
+        </span>
+    </div>
+
+
+    <a href="https://www.baidu.com">百度一下</a>
+
+    <script>
+
+        var divEl = document.querySelector(".box")
+        var btnEl = document.querySelector(".btn")
+        var spanEl = document.querySelector(".sbox")
+
+        divEl.onclick = function(event) {
+            // console.log("事件类型:", event.type)
+            // console.log("事件阶段:", event.eventPhase)
+            // console.log("事件元素中位置", event.offsetX, event.offsetY)
+            // console.log("事件客户端中位置", event.clientX, event.clientY)   // 只相对于当前客户端的坐标
+            // console.log("事件客户端中相对于document的位置", event.pageX, event.pageY)   // 相对于滚动页滚动前的坐标
+            // console.log("事件发生相对于屏幕的位置", event.screenX, event.screenY)
+
+
+            // target/currentTarget
+            // 点击按钮，target：button; currentTarget：div;
+            console.log(event.target)   // 当前事件发生的元素
+            console.log(event.currentTarget)    // 当前处理事件的元素
+            console.log(event.target === event.currentTarget)
+
+            // this获取当前的元素,divEl
+            console.log(this === divEl)
+            console.log(this === event.currentTarget)
+        }
+
+//-------------------------------------------------------------------------
+
+        // 阻止默认行为
+        var aEl = document.querySelector("a")
+        aEl.onclick = function(event) {
+            console.log("a元素发生点击")
+            event.preventDefault()  // 阻止默认行为
+        }
+
+//-------------------------------------------------------------------------
+        // 阻止时间进一步传递（冒泡或者捕获都可以阻止）
+        divEl.addEventListener("click", function(event) {
+            console.log("div的事件捕获监听")
+            // event.stopPropagation()
+        }, true)
+        spanEl.addEventListener("click", function(event) {
+            console.log("span的事件捕获监听")
+            // event.stopPropagation()
+        }, true)
+        btnEl.addEventListener("click", function(event) {
+            console.log("button的事件捕获监听")
+            // event.stopPropagation()
+        }, true)
+
+        divEl.addEventListener("click", function(event) {
+            console.log("div的事件冒泡监听")
+            // event.stopPropagation()
+        })
+        spanEl.addEventListener("click", function(event) {
+            console.log("span的事件冒泡监听")
+            // event.stopPropagation()
+        })
+        btnEl.addEventListener("click", function(event) {
+            console.log("button的事件冒泡监听")
+            // event.stopPropagation()
+        })
+
+    </script>
+    
+</body>
+</html>

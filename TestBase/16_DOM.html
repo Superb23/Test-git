@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <!-- 注释内容 -->
+    文本内容
+
+    <div class="box">
+        <h2 id="title">大标题</h2>
+        <p>
+            内容。。。。。
+            <span class="keywords">关键字</span>
+        </p>
+        <span class="keywords">关键字二</span>
+    </div>
+
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+
+    <input type="text">
+    <button>搜索</button>
+
+    <!-- 表格 -->
+    <table>
+        <thead>
+            <tr>
+                <th>姓名</th>
+                <th>年龄</th>
+                <th>身高</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>kobe</td>
+                <td>18</td>
+                <td>175</td>
+            </tr>
+            <tr>
+                <td>superb</td>
+                <td>23</td>
+                <td>178</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <form action="">
+        <input name="account" type="text">
+        <input name="password" type="password">
+        <input name="hobbies" type="checkbox" checked>
+        <select name="fruits">
+            <option value="apple">苹果</option>
+            <option value="orange">橘子</option>
+        </select>
+    </form>
+
+
+    <script>
+        /*
+            DOM（文档对象模型）将页面所有的内容表示为可以修改的对象
+            BOM（浏览器对象模型）由浏览器提供的用于处理文档之外的所有内容的其他对象
+        */
+
+        // document.documentElement 对应的是html元素
+        // document.body    对应的是body元素
+        // document.head    对应的是head元素
+        // document.doctype 对应的是文档声明
+        
+        /*
+            Node（节点）：每一个部分，包括注释、文本内容
+            Element（元素）：只针对元素，各种标签
+        */
+
+        // 1.获取节点的导航
+        var bodyEl = document.body
+        // 1.1获取body的所有子节点
+        console.log(bodyEl.childNodes)
+        // 1.2获取body的第一个子节点
+        var bodyElFirstChildren = bodyEl.firstChild
+        // 1.3获取body的注释
+        var bodyElCommentChildren = bodyElFirstChildren.nextSibling
+        console.log(bodyElCommentChildren)
+        // 1.4获取body的父节点
+        var bodyParent = bodyEl.parentNode
+        console.log(bodyParent)
+        // 节点属性
+        var bodyChildNodes = document.body.childNodes
+        var commentNode = bodyChildNodes[1]
+        var textNode = bodyChildNodes[2]
+        var divNode = bodyChildNodes[3]
+        console.log(commentNode.nodeType, textNode.nodeType, divNode.nodeType)
+        console.log(Node.COMMENT_NODE)
+        console.log(commentNode.nodeName)   // 节点名字     任意node
+        console.log(divNode.tagName)    // tagName：针对元素(element)
+        console.log(commentNode.data, textNode.data, divNode.data)  // data：针对非元素的节点获取数据
+        console.log(divNode.innerHTML)  // innerHTML针对元素的节点获取内部的全部数据(html元素也会获取)
+        console.log(divNode.outerHTML)  // outerHTML获取包括该元素在内的内部全部数据
+        console.log(divNode.textContent)    // textContent只获取元素中的文本内容
+
+
+
+        // 2.1获取body的子元素
+        var childElement = bodyEl.children
+        console.log(childElement)
+        // 2.2获取box元素
+        var boxEl1 = bodyEl.firstElementChild
+        var boxEl2 = bodyEl.children[0]
+        console.log(boxEl1, boxEl2, boxEl1 === boxEl2)
+        // 2.3获取ul元素
+        var ulEl1 = boxEl1.nextElementSibling
+        var ulEl2 = bodyEl.children[1]
+        console.log(ulEl1, ulEl2, ulEl1 === ulEl2)
+        // 2.4获取li元素
+        var liEl = ulEl1.children
+        console.log(liEl)
+
+//------------------------------------------------------------------------------
+        // table
+        var tableEl = document.body.children[4]
+        // 通过table元素获取内部的后代元素
+        console.log(tableEl.tHead)  // Head H要大写
+        console.log(tableEl.rows)
+
+        // form
+        // var formEl = document.body.children[5]
+        // var inputEl = formEl.children[0]
+        var formEl = document.forms[0]
+        var inputEl = formEl.elements[0]
+        // var inputEl = formEl.elements.account
+        console.log(inputEl)
+        setTimeout(function() {
+            console.log(inputEl.value)
+        }, 1000)
+
+
+//------------------------------------------------------------------------------
+        // 获取任意元素
+        // 直接获得到class = keyword的所有元素
+        var keywordsEls = document.getElementsByClassName("keywords")
+        console.log(keywordsEls)
+        // 修改第一个
+        keywordsEls[0].style.color = "red"
+
+        // querySelector通过选择器查询      -------------->常用方式
+        var keywordEl = document.querySelector(".keywords") // 只找到第一个class=keywords的元素
+        var keywordEls = document.querySelectorAll(".keywords") // 找到所有
+        // keywordEls是对象，可迭代     可用for...of循环遍历
+        var titleEl = document.querySelector("#title")
+
+    </script>
+</body>
+</html>

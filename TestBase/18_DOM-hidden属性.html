@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <button class="btn">切换</button>
+
+    <!-- hidden属性，隐藏该元素内容 -->
+    <div id="box" class="cba" title="asd" style="color:brown" hidden>
+        div内容
+    </div>
+
+    <script>
+        // 获取元素
+        var boxEl = document.querySelector("#box")
+        var btnEl = document.querySelector(".btn")
+
+        // 监听btn的点击
+        btnEl.onclick = function() {
+            // boxEl.hidden = true
+            // boxEl.style.display = "none"
+
+            // 切换
+            // if (!boxEl.hidden) {
+            //     boxEl.hidden = true
+            // } else {
+            //     boxEl.hidden = false
+            // }
+            boxEl.hidden = !boxEl.hidden
+        }
+    </script>
+</body>
+</html>

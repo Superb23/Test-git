@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .box {
+            width: 1000px;
+            height: 100px;
+            padding: 20px;
+            border: 1px solid red;
+            background-color: chocolate;
+            overflow: auto;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="box">
+        新京报讯（记者张璐）党的二十大报告提出，深入推进环境污染防治。下一步要怎么做？记者了解到，未来我国将用更高的标准深入打好污染防治攻坚战，统筹减污降碳协同增效，同时坚持PM2.5与臭氧协同治理。
+
+　　近些年，我国生态环境得到了显著的改善。记者从生态环境部获悉，从生态环境质量来看，2021年全国地级以上城市细颗粒物（PM2.5）平均浓度比2015年下降了34.8%；这十年，I—III类优良水体断面比例提升了23.3个百分点，达到了84.9%；土壤污染风险得到有效管控，中国实施了禁止洋垃圾入境，实现了固体废物“零进口”的目标。
+
+　　党的二十大报告提出尊重自然、顺应自然、保护自然，是全面建设社会主义现代化国家的内在要求。必须牢固树立和践行绿水青山就是金山银山的理念，站在人与自然和谐共生的高度谋划发展。深入推进环境污染防治，持续深入打好蓝天、碧水、净土保卫战。提升环境基础设施建设水平，推进城乡人居环境整治。
+
+　　中央生态环境强化督察与应急处置专家组成员彭应登告诉新京报记者，在环境污染防治方面，报告深刻认识到蓝天、碧水、净土保卫战的复杂性、艰巨性和长期性，稳妥地提出基本消除重污染天气，基本消除城市黑臭水体，加强土壤污染源头防控的战略目标，以避免各地区与各行业制定不切实际战略与战术策略。
+
+　　下一步如何深入推进环境污染防治？在今年9月举行的“中国这十年”系列主题新闻发布会上，生态环境部部长黄润秋表示，“十四五”仍然要坚持保持力度，延展深度，拓展广度，用更高的标准深入打好污染防治攻坚战。“我们已经围绕污染防治攻坚战谋划了八大标志性战役，现在已经陆续推出，包括重污染天气消除、臭氧污染防治、柴油车货车污染治理、城市黑臭水体治理、长江保护修复、黄河生态保护治理、重点流域海域综合治理、农业农村污染治理等。
+
+　　“‘五个统筹’很重要。”他表示，要统筹减污降碳协同增效，这不仅是中国经济高质量发展的需要，也是环境治理向深里走，生态环境质量从源头上、根本上改变的需要。坚持PM2.5与臭氧协同治理，“两者具有相同的前体物，这两年我们做了一些努力，也取得了初步成效，2021年PM2.5和臭氧初步实现了协同降低。”他说，还要统筹好水资源、水环境、水生态，良好的水体要有水、有草、有鱼。统筹城镇和乡村，治理好农村的面源污染、垃圾污水、黑臭水体等。统筹好传统污染物和新污染物，尤其要建立新化学物质风险防控体系。
+    </div>
+
+
+    <script>
+        var boxEl = document.querySelector(".box")
+
+        // 1.获取样式（局限性很强）
+        // var boxStyle = getComputedStyle(boxEl)
+        // console.log(boxStyle.height)
+
+        // 2.获取更多信息
+        console.log(boxEl.clientWidth)  // 客户端的宽度 = contentWith+padding（不包含滚动条）
+        console.log(boxEl.clientTop)
+
+        console.log(boxEl.scrollHeight) // 整个可滚动的区域高度
+        console.log(boxEl.scrollTop)    // 滚动部分的高度
+
+//-----------------------------------------------------------------------------------------
+        // window对象
+        window.onclick = function() {
+            console.log(boxEl.scrollTop)    // 实时的滚动部分高度
+        }
+
+        // window大小
+        console.log(window.outerHeight) // window窗口的整个高度
+        console.log(window.outerWidth)
+
+        console.log(window.innerHeight) // window窗口的高度
+        console.log(window.innerWidth)
+
+        console.log(document.documentElement.clientHeight)  // html的高度
+
+        console.log(document.documentElement.offsetHeight)  
+
+
+
+    </script>
+</body>
+</html>

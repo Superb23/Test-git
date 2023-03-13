@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+
+
+    <script>
+        /*
+            JSON(JavaScript Object Notation, JavaScript对象符号)是一种数据格式，在服务器和客户端之间传输的最常用的数据格式
+
+            JSON的顶层支持三种类型的值：
+                简单值：
+                对象值：
+                数组值：
+
+            stringify()：将JavaScript类型转成对应的JSON字符串   ---->序列化
+            parse()：解析JSON字符串，转回对应的JavaScript类型   ---->反序列化
+        */
+        
+        var obj = {
+            name: "superb",
+            age: 18,
+            friend: {
+                name: "kobe"
+            },
+            // toJSON: function() {    // 转成JSON字符串时，字符串为该返回值
+            //     return "123"
+            // }
+        }
+
+        // // 1.将obj对象进行序列化
+        var objJSONString = JSON.stringify(obj)
+        console.log(objJSONString)
+
+        // // 2.将对象存储到localStorage
+        // localStorage.setItem("info", objJSONString)
+        
+        // var item = localStorage.getItem("info")
+        // console.log(item, typeof item)
+
+        // // 3.将字符串转回到对象(反序列化)
+        // var newObj = JSON.parse(item)
+        // console.log(newObj)
+
+        // stringify()的其他使用
+        // replacer参数，修改字符串
+        // var objJSONString = JSON.stringify(obj, function(key, value) {
+        //     if (key === "name") {
+        //         return "why"
+        //     }
+        //     return value
+        // }, "")
+        // console.log(objJSONString)
+        
+
+        //space参数     调整格式，添加空格，可读性
+        // var objJSONString = JSON.stringify(obj, null, 4)
+        // console.log(objJSONString)
+        
+        // 如果对象本身有显示toJSON方法，直接调用toJSON方法
+        // var objJSONString = JSON.stringify(obj)
+        // console.log(objJSONString)
+
+//--------------------------------------------------------------
+        // parse()的其他使用
+        var newObj = JSON.parse(objJSONString, function(key, value) {
+            if (key === "age") {
+                return value + 2
+            }
+            return value
+        })
+        console.log(newObj)
+    </script>
+</body>
+</html>

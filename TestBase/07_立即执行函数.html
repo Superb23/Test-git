@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+        /*
+            立即执行函数中定义的变量有自己的定义域
+        */
+        // 立即执行函数
+        (function() {
+            console.log("立即执行函数被调用~")
+        })()
+
+
+        var result = (function(message) {
+            console.log("函数立即被执行", message)
+            return "hello world"
+        })("why")
+        console.log(result)
+
+
+        // 其他写法
+        (function(fn) {
+            console.log("立即执行函数被调用~")
+        }())
+        
+    </script>
+</body>
+</html>

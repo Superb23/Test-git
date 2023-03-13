@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+
+        var names = ["abc", "asd", "qwe"]
+        var stus = new Array("asd", "qwe", "zxc")
+        // lenght属性可写   array.length = 0    即可清空数组
+
+
+        // 访问数组中的元素
+        console.log(names[0])   // 不允许为负值
+        console.log(names.at(0))    // 允许索引为负值，表示从最后一位往前
+
+        // 修改数组中的元素
+        names[0] = "hello"
+        console.log(names)
+
+        // 在数组的尾部添加和删除元素     push方法、pop方法（有返回值）------     运行快
+        names.push("why")
+        console.log(names)
+
+        names.pop()
+        names.pop()
+        console.log(names)
+
+        // 在数组的头部添加和删除元素   unshift方法、shift方法   --------       运行慢
+        names.unshift("superb", "hi")
+        console.log(names)
+
+        names.shift()
+        names.shift()
+        console.log(names)
+// ------------------------------------------------------------------------
+        // splice     ------------------------------------------------------------      重点（修改数组）
+        // 参数一：start，从什么位置开始操作元素
+        // 参数二：deleteCount，删除元素的个数
+        // 参数三：
+        // 在任意位置添加/删除/替换元素
+        var message = ["abc", "asd", "qwe", "zxc", "iop"]
+
+        // 删除元素
+        message.splice(1, 2)
+        console.log(message)
+
+        // 新增元素
+        message.splice(1, 0, "hello", "hi", "world")     // deleteCount：0   后面可以添加新的元素
+        console.log(message)
+
+        // 替换元素
+        message.splice(1, 2, "qqq", "aaa")  // deleteCount的值为后面添加新的元素的个数
+        console.log(message)
+// ------------------------------------------------------------------------
+
+        // 数组的遍历
+        for (var i = 0; i < names.length; i++) {
+            console.log(names[i])
+        }
+
+        for (var key in names) {
+            console.log(key, names[key])
+        }
+
+        for (var item of names) {
+            console.log(item)
+        }
+
+        var message1 = ["abc", "asd", "qwe", "zxc", "iop"]
+        // 1.slice方法：不会修改原数组
+        // start：从什么位置开始
+        // end：结束位置，不包含end本身
+        var newMessage = message1.slice(2, 4) // 返回所截取的数组
+        console.log(newMessage)
+        console.log(message1)
+
+        // 2.concat方法：将多个数组拼接在一起
+        var str1 = ["abc", "asd"]
+        var str2 = ["nbc", "qwe"]
+        var str3 = ["why", "how"]
+
+        var str = str1.concat(str2, str3)
+        console.log(str)
+
+        // 3.join方法：字符串split  将数组的所有元素连接成一个字符串，并返回
+        console.log(message1.join("-"))
+
+// ------------------------------------------------------------------------
+        // 数组中查找元素
+        // array.indexOf("查找元素")    返回索引（在字符串中适用，但在数组中应用受限，数组元素为复杂数据结构，可用find方法--高阶函数）
+        // array.includes("查找元素")   返回Boolean
+        var students = [
+            {id: 101, name: "superb", age: 22},
+            {id: 102, name: "james", age: 20},
+            {id: 103, name: "herry", age: 24},
+            {id: 104, name: "kobe", age: 18}
+        ]
+
+        var stu = students.find(function(item) {    // 数组的find方法：循环，依次将数组中的元素传入item，返回该元素
+            if (item.id === 102) return true        // 若有返回值true，则会停止循环，且返回该元素；返回值false，则继续查找
+        })
+        console.log(stu)
+
+        var stu1 = students.find(function(item, index, students) {
+            // console.log(item, index, students)
+            return item.id === 104            
+        })
+        console.log(stu1)
+
+        // forEach
+        students.forEach(function(item, index, students) {   // 循环，依次将数组中的元素传入参数
+            console.log(item, index, students)
+        })
+
+        // findIndex    查找元素的索引
+        var findIndex = students.findIndex(function(item, index, array) {
+            return item.id === 103
+        })
+        console.log(findIndex)
+
+// ------------------------------------------------------------------------
+        // 数组排序和反转
+        var num = [10, 3, 30, 23, 99, 8]
+        num.sort(function(a, b) {   // a-b，返回正数，谁小谁在前    升序
+            return a - b
+        })
+        console.log(num)
+
+        num.sort(function(a, b) {   // 降序
+            return b - a
+        })
+        console.log(num)
+        console.log(num.reverse())  // 反转
+
+        // 复杂类型排序
+        students.sort(function(item1, item2) {
+            return item1.age - item2.age
+        })
+        console.log(students)
+    </script>
+</body>
+</html>

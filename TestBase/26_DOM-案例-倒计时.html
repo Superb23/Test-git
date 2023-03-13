@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .countdown {
+            color: black;
+            font-size: 20px;
+        }
+
+        .countdown > .time {
+            background-color: red;
+            color: white;
+            padding: 5px;
+            border-radius: 5px;
+            
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="countdown">
+        <span class="time hour"></span>
+        <span class="split">:</span>
+        <span class="time minute"></span>
+        <span class="split">:</span>
+        <span class="time second"></span>
+    </div>
+
+
+
+    <script>
+
+        var hourEl = document.querySelector(".hour")
+        var minuteEl = document.querySelector(".minute")
+        var secondEl = document.querySelector(".second")
+
+        setInterval(function() {
+            var nowTime = new Date()
+            var endTime = new Date()
+            endTime.setHours(24)
+            endTime.setMinutes(0)
+            endTime.setSeconds(0)
+            endTime.setMilliseconds(0)
+
+
+            // 时间戳的差值
+            var intervalTime = Math.floor((endTime.getTime() - nowTime.getTime()) / 1000)
+            var hour = Math.floor(intervalTime / 3600) + ""
+            var minute = Math.floor((intervalTime / 60) % 60) + ""
+            var second = Math.floor(intervalTime % 60) + ""
+
+            // 设置内容
+            hourEl.textContent = hour.padStart(2, "0")
+            minuteEl.textContent = minute.padStart(2, "0")
+            secondEl.textContent = second.padStart(2, "0")
+        }, 1000)
+
+    </script>
+</body>
+</html>

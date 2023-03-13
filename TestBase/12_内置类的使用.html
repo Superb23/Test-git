@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+
+        // Number类型
+
+        console.log(Number.MAX_SAFE_INTEGER)
+        console.log(Number.MAX_VALUE)
+
+        var num = 3.1415926
+        console.log(num.toFixed(3))// 保留小数位    进行了四舍五入
+        console.log(Number.parseInt(num))
+        console.log(Number.parseFloat(num))
+        // window对象上
+        console.log(parseInt(num))
+        console.log(parseFloat(num))
+        console.log(Number.parseInt === window.parseInt) // window可省略
+
+        var intNum = 100
+        console.log(intNum.toString(2))// 转换进制
+        console.log(intNum.toString(16))
+
+
+        // ----------------------------------------------------------------
+
+        // Math对象
+
+        // Math对象的属性
+        console.log(Math.PI)
+
+        // Math对象的方法
+        var num = 3.5578997
+        console.log(Math.floor(num))    // 向下取整
+        console.log(Math.ceil)  // 向上取整
+        console.log(Math.round(num))    //四舍五入
+
+        console.log(Math.random())  // 生成[0,1)的随机数
+        console.log(Math.pow(2, 3)) // 次幂
+
+
+        // ----------------------------------------------------------------
+
+        // String类型
+        var str = "Hello World"
+
+        // 属性: length
+        console.log(str.length)
+        // 访问字符串中某个位置的字符
+        console.log(str[2])
+        console.log(str.charAt(2))
+
+        // for...of...遍历
+        // String对象内部将字符串变成一个可迭代对象
+        for (var char of str) {
+            console.log(char)
+        }
+
+        // 字符串定义后不可修改
+        var str1 = str.toUpperCase()    // 改为大写字母，返回新的字符串
+        console.log(str1)
+
+        var str2 = str.toLowerCase()    // 改为小写字母，返回新的字符串
+        console.log(str2)
+
+        // 判断一个字符串中是否有另外一个字符串     indexOf()
+        /*  1.indexOf()
+            index：
+            情况一：搜索到，返回搜索字符串所在索引位置
+            情况二：没有搜索到，返回-1
+        */
+        var message = "my name is superb"
+        var str = "is"
+        if (message.indexOf(str) !== -1) {
+            console.log(`message包含str 在${message.indexOf(str)}位置处`)
+        } else {
+            console.log("message不包含str")
+        }
+
+        // 2.includes   返回的是Boolean类型
+        if (message.includes(str)) {
+            console.log("message中包含str")
+        }
+
+        // 3.startsWith 是否以xxx开头
+        if (message.startsWith("my")) {
+            console.log("message以my开头")
+        }
+
+        // 4.endsWith   是否以xxx结束
+        if (message.endsWith("perb")) {
+            console.log("message以perb结束")
+        }
+
+        // 5.replace    替换字符串
+        var newMessage = message.replace("m", "z")
+        console.log(newMessage)
+
+        // 获取子字符串
+        console.log(message.slice(3, 7))    // 从3开始，到7结束（7不包括）
+        console.log(message.slice(3))   // 从3开始，到最后
+        console.log(message.slice(3, -1))
+        
+        console.log(message.substr(3, 7))   // 从3开始，长度为7
+
+        // 字符串的拼接
+        var str01 = "hello"
+        var str02 = "world"
+        var str03 = "!!!"
+        var newStr1 = str01.concat(str02).concat(str03) // 链式调用
+        var newStr2 = str01.concat(str02, str03)
+        console.log(newStr1)
+        console.log(newStr2)
+
+        // 删除首尾的空格
+        console.log("  hello world  ".trim())
+
+        // 字符串的切割
+        var mes = "abc-sdd-asd"
+        var item = mes.split("-")   // 分割，以"-"  数组
+        var newMes = item.join("*") // 数组中的元素以"*"拼接成字符串
+        console.log(newMes)
+
+
+
+    </script>
+</body>
+</html>

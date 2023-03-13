@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <style>
+        .active {
+            color: blue;
+            font-size: 24px;
+            background-color: chartreuse;
+        }
+        .box {
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box" style="color: red; background-color: blue;"
+        data-age="18" data-height="1.75">
+        这是div内容box
+    </div>
+
+    <button class="btn">切换</button>
+
+    <script>
+        var boxEl = document.querySelector(".box")
+
+        var count = 1
+        boxEl.onclick = function() {
+            // // 1.直接修改style
+            // boxEl.style.color = "red"
+            // boxEl.style.fontSize = "20px"
+            // boxEl.style.backgroundColor = "green"
+            // // 2.动态地添加某一个class
+            // boxEl.className = "active"
+            // 3.动态修改boxEl的宽度
+            boxEl.style.fontSize = 10 * count++ + "px"
+        }
+
+        // 1.方法一：className
+        // boxEl.className = "asd"
+
+        // 2.方法二：classList操作class
+        // classList是可迭代对象
+        boxEl.classList.add("asd")  // 添加class
+        boxEl.classList.remove("asd")   // 移除
+
+
+        var btnEl = document.querySelector(".btn")
+
+        btnEl.onclick = function() {
+            boxEl.classList.toggle("active")    // 如果类不存在就添加类，存在就移除它
+        }
+
+
+        /*
+            1.在property中使用驼峰式
+            console.log(boxEl.style.backgroundColor)
+
+            2.如果将一个属性的值设置为空的字符串，那么是使用默认值
+            boxEl.style.display = ""
+
+            3.设置多个样式
+            boxEl.style.cssText = "font-size: 30px; color: red;"
+        */
+        console.log(boxEl.style.backgroundColor)    // 只能获得内联样式style的属性
+        console.log(getComputedStyle(boxEl).fontSize)   // 全局函数getComoutedStyle()获取style、CSS文件中的样式
+
+        // 自定义属性一般设为data-
+        // 这些非标准属性都会被存在dataset中，方便操作
+        console.log(boxEl.dataset)
+
+        // 小程序开发时使用
+        console.log(boxEl.dataset.age)
+        console.log(boxEl.dataset.height)
+    </script>
+</body>
+</html>

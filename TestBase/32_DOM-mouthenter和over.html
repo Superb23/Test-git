@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+        }
+
+        .box span {
+            width: 50px;
+            height: 50px;
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="box">
+        <span></span>
+    </div>
+
+    <div class="box1">
+        <button>删除</button>
+        <button>新增</button>
+        <button>搜索</button>
+    </div>
+
+
+    <script>
+
+        var boxEl = document.querySelector(".box")
+        var spanEl = document.querySelector("span")
+
+        /* 
+            mouseenter和mouseleave不支持冒泡
+            进入子元素依然属于在该元素内，没有任何反应
+        */
+        // boxEl.onmouseenter = function() {
+        //     console.log("box onmouseenter")
+        // }
+
+        // boxEl.onmouseleave = function() {
+        //     console.log("box onmouseleave")
+        // }
+        
+        // spanEl.onmouseenter = function() {
+        //     console.log("span onmouseenter")
+        // }
+
+        // spanEl.onmouseleave = function() {
+        //     console.log("span onmouseleave")
+        // }
+
+        /*
+            onmouseover和onmouseout支持冒泡
+            进入子元素时：先调用父元素的mouseout，再调用子元素的mouseover，因为支持冒泡，所以会将mouseover传递到父元素中
+        */
+        boxEl.onmouseover = function() {
+            console.log("box onmouseover")
+        }
+
+        boxEl.onmouseout = function() {
+            console.log("box onmouseout")
+        }
+        spanEl.onmouseover = function() {
+            console.log("span onmouseover")
+        }
+
+        spanEl.onmouseout = function() {
+            console.log("span onmouseout")
+        }
+
+//---------------------------------------------------------------
+        // 方案一：监听的本身就是button元素
+        // var btnEls = document.querySelectorAll("button")
+        // for (var i = 0; i < btnEls.length; i++) {
+        //     btnEls[i].onmouseover = function(event) {
+        //         console.log(event.target.textContent)
+        //     }
+        // }
+
+        // 方案二：事件委托
+        // onmouseenter不能用在事件委托，不支持冒泡
+        // onmouseover可用于事件委托
+        var box1El = document.querySelector(".box1")
+        box1El.onmouseover = function(event) {
+            if (event.target !== box1El) {
+                console.log(event.target.textContent)
+            }
+        }
+    </script>
+</body>
+</html>

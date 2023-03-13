@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <!-- 
+        元素的属性：attribute（特性）
+        标准attribute：html中定义的元素属性
+        非标准attribute：自定义的属性
+    -->
+    <div id="box" class="box" title="box"
+        age="18" height="175">
+        div内容,box
+    </div>
+
+    <input class="checkbox" type="checkbox" checked><br>
+
+    账号:
+    <input type="text"  class="account" >
+    <button class="btn">设置account值</button>
+
+
+    <script>
+        // attribute的值总是字符串类型
+        var boxEl = document.querySelector(".box")
+
+        // 判断元素是否含有对应的属性
+        console.log(boxEl.hasAttribute("age"), boxEl.hasAttribute("id"), boxEl.hasAttribute("asd"))
+        // 获取对应属性的值
+        console.log(boxEl.getAttribute("class"), boxEl.getAttribute("age"))
+        // 设置属性的值
+        boxEl.setAttribute("id", "asd")
+        console.log(boxEl.getAttribute("id"))
+        // 移除属性
+        boxEl.removeAttribute("age")
+        console.log("------------------------------------")
+
+        // 获取全部属性
+        var boxAttributes = boxEl.attributes
+        for (var attr of boxAttributes) {
+            console.log(attr.name, attr.value)
+        }
+
+
+        // 对象中的属性称为property
+        // var obj = {
+        //     // property
+        //     name: "superb"
+        // }
+        // boxEl    是一个对象
+
+        /*
+            标准的attribute在对应的对象模型中都有对应的property
+            在实际开发时，直接使用property(.id)
+        */
+        console.log(boxEl.id, boxEl.className, boxEl.title, boxEl.height)
+
+        var inputEl = document.querySelector(".checkbox")
+        if (inputEl.checked) {
+            console.log("checkbox处于被选中状态")
+        }
+        console.log(typeof inputEl.checked)
+
+        var accountEl = document.querySelector(".account")
+        var btnEl = document.querySelector(".btn")
+
+        btnEl.onclick = function() {
+            // 以下两种方式都可设置value值
+            accountEl.setAttribute("value", "superb")
+            accountEl.value = "why" // 优先级更高
+        }
+
+
+
+
+
+    </script>
+</body>
+</html>
