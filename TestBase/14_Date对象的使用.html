@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+
+        // 创建Date对象     
+        // 1.无参数 ---> 获取当前时间
+        var date1 = new Date()
+        console.log(date1)
+
+        // 2.传入参数：时间字符串
+        var date2 = new Date("2022-04-23")
+        console.log(date2)
+
+        // 3.传入具体的年月日时分秒毫秒
+        var date3 = new Date(2023, 4, 23, 17, 15, 07, 777)
+        console.log(date3)
+
+        // 4.传入一个UNIX时间戳     UNIX时间戳：它是一个整数，表示自1970年1月1日00:00:00 UTC以来的毫秒数
+        // 1s = 1000ms
+        var date4 = new Date(1000)
+        console.log(date4)
+
+//-------------------------------------------------------------------------------------
+        //Date对象的字符串形式
+        console.log(date1.toDateString())
+        console.log(date1.toISOString())
+
+        var year = date1.getFullYear()
+        var month = date1.getMonth()
+        var day = date1.getDate()   // date.getDay()返回的是礼拜几, date.getDate()返回的日
+        var hour = date1.getHours()
+        var minute = date1.getMinutes()
+        var second = date1.getSeconds()
+        console.log(year, month+1, day, hour, minute, second)
+
+        // 1.当前时间的时间戳
+        var timestamp1 = Date.now()     // 可用于计算某个操作所花费的时间
+        console.log(timestamp1)
+        // 2.将date对象转成时间戳
+        var timestamp2 = date2.getTime()
+        var timestamp3 = date2.valueOf()    // 与getTime()值一样
+        console.log(timestamp2, timestamp3)
+        // 3.了解即可
+        console.log(+date2)
+
+
+        // 字符串转时间戳
+        var timeStr = "2022-04-23"
+        console.log(Date.parse(timeStr))    // 类方法Date.parse()   将对应格式的字符串转为时间戳
+
+
+    </script>
+</body>
+</html>

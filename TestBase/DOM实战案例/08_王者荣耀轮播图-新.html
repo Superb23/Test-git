@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/common.css">
+    <style>
+        .main {
+            height: 100px;
+        }
+
+        .news-section {
+            display: flex;
+            height: 342px;
+        }
+
+        .news-section .banner {
+            width: 605px;
+            background-color: #000;
+            overflow: hidden;
+        }
+
+        .news-section .banner .image-list {
+            position: relative;
+            display: flex;
+            width: 604px;
+            height: 298px;
+        }
+
+        .news-section .banner .image-list .item {
+            position: absolute;
+            left: 100%;
+            top: 0;
+            flex-shrink: 0;
+            width: 100%;
+            transition: all 300ms ease;
+        }
+
+        .news-section .banner .image-list .item:first-child {
+            left: 0;
+        }
+
+        .news-section .banner .image-list .item a {
+            display: block;
+        }
+
+        .news-section .banner .image-list .item a img {
+            width: 100%;
+        }
+
+        .news-section .banner .title-list {
+            display: flex;
+            height: 44px;
+            line-height: 44px;
+        }
+
+        .news-section .banner .title-list .item {
+            flex: 1;
+            text-align: center;
+        }
+
+        .news-section .banner .title-list .item a {
+            display: block;
+            font-size: 14px;
+            color: #b1b2be;
+        }
+        .news-section .banner .title-list .item.active a,
+        .news-section .banner .title-list .item a:hover {
+            color: #f3c258;
+            background-color: rgba(255,255,255,.15);
+        }
+
+        .news-section .news {
+            flex: 1;
+            background-color: purple;
+        }
+
+        .news-section .download {
+            width: 236px;
+            background-color: skyblue;
+        }
+
+        .news-section .download a {
+            display: block;
+            background: url(./img/main_sprite.png) no-repeat;
+        }
+
+        .news-section .download a.download-btn {
+            height: 128px;
+            background-position: 0 -219px;
+        }
+
+        .news-section .download a.guard-btn {
+            height: 106px;
+            background-position: 0 -350px;
+        }
+
+        .news-section .download a.experience-btn {
+            height: 108px;
+            background-position: 0 -461px;
+        }
+    </style>
+</head>
+<body>
+    <div class="main main_wrapper">
+        <div class="news-section">
+            <div class="banner">
+                <ul class="image-list">
+                <li class="item">
+                    <a href="">
+                    <img src="./img/banner_01.jpeg" alt="">
+                    </a>
+                </li>
+                <li class="item">
+                    <a href="">
+                    <img src="./img/banner_02.jpeg" alt="">
+                    </a>
+                </li>
+                <li class="item">
+                    <a href="">
+                    <img src="./img/banner_03.jpeg" alt="">
+                    </a>
+                </li>
+                <li class="item">
+                    <a href="">
+                    <img src="./img/banner_04.jpeg" alt="">
+                    </a>
+                </li>
+                <li class="item">
+                    <a href="">
+                    <img src="./img/banner_05.jpeg" alt="">
+                    </a>
+                </li>
+                </ul>
+                <ul class="title-list">
+                <li class="item active">
+                    <a href="#">桑启的旅途故事</a>
+                </li>
+                <li class="item">
+                    <a href="#">启示之音抢先听</a>
+                </li>
+                <li class="item">
+                    <a href="#">谁成为版本之子</a>
+                </li>
+                <li class="item">
+                    <a href="#">观赛体验升级</a>
+                </li>
+                <li class="item">
+                    <a href="#">季后赛开战</a>
+                </li>
+                </ul>
+            </div>
+            <div class="news">
+                
+            </div>
+            <div class="download">
+                <a class="download-btn" href="#"></a>
+                <a class="guard-btn" href="#"></a>
+                <a class="experience-btn" href="#"></a>
+            </div>
+        </div>
+        <div class="content-section"></div>
+        <div class="match-section"></div>
+    </div>
+    
+
+    <script>
+        /*
+            图片堆放在一起，不同于之前的图片按序水平展开摆放
+            切换图片时，只进行只进行两个图片之间的切换，非轮播
+        */
+        var titleListEl = document.querySelector(".title-list")
+        var imageListEl = document.querySelector(".image-list")
+        var bannerEl = document.querySelector(".banner")
+        
+        // 定义变量记录当前索引
+        var currentIndex = 0
+        var activeTitleEl = titleListEl.querySelector(".active")
+        var previousIndex = 0
+        var timerID = null
+
+        // 底部titles的切换，同时进行轮播
+        titleListEl.onmouseover = function(event) {
+            // 确定鼠标进入的元素
+            var itemEl = event.target.parentElement
+            if (!itemEl.classList.contains("item")) return
+
+
+            // 可迭代对象转换为数组，调用findIndex()方法返回索引
+            var index = Array.from(titleListEl.children).findIndex(function(item) {
+                return item === itemEl
+            })
+            previousIndex = currentIndex
+            currentIndex = index
+            switchBanner()
+        }
+
+        // 封装一个添加定时器的函数
+        function startTimer() {
+            timerID = setInterval(() => {
+                previousIndex = currentIndex
+                currentIndex = (currentIndex + 1) % imageListEl.children.length
+                switchBanner()
+            }, 1000);
+        }
+
+        startTimer()
+
+        // 监听banner事件
+        // 排他，轮播和触碰不同时
+        bannerEl.onmouseenter = function() {
+            clearInterval(timerID)
+        }
+        bannerEl.onmouseleave = function() {
+            startTimer()
+        }
+
+        // 封装一个切换轮播的函数
+        function switchBanner() {
+            for (var i = 0; i < imageListEl.children.length; i++) {
+                var itemEl = imageListEl.children[i]
+
+                if (i === currentIndex) {
+                    itemEl.style.transition = "left 300ms ease"
+                    itemEl.style.left = "0"
+                } else if (i < currentIndex) {
+                    if (i !== previousIndex) itemEl.style.transition = "none"
+                    itemEl.style.left = "-100%"
+                } else {
+                    if (i !== previousIndex) itemEl.style.transition = "none"   // 离开时也有动画
+                    itemEl.style.left = "100%"
+                }
+            }
+
+            activeTitleEl.classList.remove("active")
+
+            var currentItemEl = titleListEl.children[currentIndex]
+            currentItemEl.classList.add("active")
+            activeTitleEl = currentItemEl
+        }
+
+    </script>
+</body>
+</html>

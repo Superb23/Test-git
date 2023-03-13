@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h2 class="time"></h2>
+
+    <script>
+        // String的padStart()方法   从前面补齐位数
+        // var str = "1"
+        // console.log(str.padStart(3, "0"))   // 位数为3，用"0"从前面补齐
+
+        function padLeft(content, count, padStr) {  
+            count = count || 2  // 若count不是真值，则赋值为2   (默认参数)
+            padStr = padStr || "0"
+            
+            content = String(content)
+            return content.padStart(count, padStr)
+        }
+
+        var timeEl = document.querySelector(".time")
+
+
+        setInterval(function() {    // setInterval(fn, time)    定时器，每隔一定时间执行一次fn函数
+                
+            // 对具体时间进行格式化
+            var date = new Date()   // 每次执行都需要拿到最新的date
+            var year = padLeft(date.getFullYear())
+            var month = padLeft(date.getMonth())
+            var day = padLeft(date.getDate())
+            var hour = padLeft(date.getHours())
+            var minute = padLeft(date.getMinutes())
+            var second = padLeft(date.getSeconds())
+            
+            timeEl.textContent = `${year}-${month}-${day} ${hour}:${minute}:${second}`
+        }, 1000)
+    </script>
+</body>
+</html>

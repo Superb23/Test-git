@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: blueviolet;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="box"></div>
+
+
+    <script>
+
+        var boxEl = document.querySelector(".box")
+
+        boxEl.onclick = function() {
+            console.log("ciick")
+        }
+
+        boxEl.oncontextmenu = function(event) {
+            console.log("点击右键")
+            event.preventDefault()
+        }
+
+        // 变量记录鼠标是否点下去
+        var isDown = false
+        boxEl.onmousedown = function() {
+            console.log("鼠标按下")
+            isDown = true
+        }
+
+        boxEl.onmouseup = function() {
+            console.log("鼠标抬起")
+            isDown = false
+        }
+
+        boxEl.onmousemove = function() {
+            if (isDown) {
+                console.log("鼠标在div上面移动")
+            }
+        }
+    </script>
+</body>
+</html>

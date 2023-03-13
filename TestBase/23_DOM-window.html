@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .box {
+            width: 5000px;
+            height: 100px;
+            background-color: chartreuse;
+        }
+
+        .scroll-btn {
+            position: fixed;
+            right: 10px;
+            bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="box"></div>
+    <button class="scroll-btn">滚动到位</button>
+    <br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br>
+
+
+
+    <script>
+        // window对象
+        window.onclick = function() {
+            console.log(boxEl.scrollTop)    // 实时的滚动部分高度
+        }
+
+        // window大小
+        console.log(window.outerHeight) // window窗口的整个高度
+        console.log(window.outerWidth)
+
+        console.log(window.innerHeight) // window窗口的高度
+        console.log(window.innerWidth)
+
+        console.log(document.documentElement.clientHeight)  // html的高度
+
+        console.log(document.documentElement.offsetHeight)
+
+        // 监听点击onclick
+        window.onclick = function() {
+            console.log(`(${window.scrollX},${window.scrollY})`)    // x,y轴滚动的位置
+        }
+
+        // 监听滚动onscroll
+        window.onscroll = function() {
+            var scrollY = window.scrollY
+            if (scrollY > 600) {
+                // 显示按钮
+                // scrollBtnEl.style.display = ""
+                scrollBtnEl.hidden = false
+            } else {
+                // 隐藏按钮
+                // scrollBtnEl.style.display = "none"
+                scrollBtnEl.hidden = true
+            }
+        }
+
+        // 点击按钮后滚动到某个位置
+        var scrollBtnEl = document.querySelector(".scroll-btn")
+        scrollBtnEl.onclick = function() {
+            // window.scrollBy(100, 100)   // 相对原来坐标增加
+            window.scrollTo(100, 100)   // 滚动到指定位置
+        }
+
+
+    </script>
+    
+</body>
+</html>

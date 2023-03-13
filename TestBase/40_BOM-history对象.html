@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <button class="change">修改history</button>
+    <button class="back">返回上一级</button>
+
+
+    <script>
+        /*
+            前端路由核心：修改URL，但是页面不刷新
+            1> 修改hash值
+            2> 修改history
+
+            history对象允许我们访问浏览器曾经的会话历史记录
+        */
+
+        // 1.history对应的属性
+        console.log(history.length)
+        console.log(history.state)
+
+        var btnEl = document.querySelector("button")
+        btnEl.onclick = function() {
+            history.pushState({}, "", "/why")   // 打开一个指定地址(形式上修改URL，不刷新页面)
+            // history.replaceState({}, "", "/why")    // 替换一个指定地址，不可返回
+        }
+
+        var backBtnEl = document.querySelector(".back")
+        backBtnEl.onclick = function() {
+            history.back()  // 返回上一页
+            // history.forward()   // 前进下一页
+            // 类似于上面两个方法，只是传入层级
+            // history.go(-2)
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+        /*
+            函数声明，该函数会被提前解析，可在声明前调用
+            函数表达式，必须执行到该处才可执行
+        */
+        //函数声明
+        function foo() {
+        
+        }
+
+        //函数表达式
+        var foo = function() {
+        
+        }
+
+
+        /*
+            函数可被赋值给变量
+            函数可在变量之间来回传递
+            函数可为另一个函数的参数
+            函数可作为另一个函数的返回值
+            函数存储在另一个数据结构中
+        */
+        function foo() {
+            console.log("foo()")
+        }
+        // 函数可为另一个函数的参数
+        function bar(fn) {
+            console.log("fn:", fn)
+            fn()
+        }
+        bar(foo)
+
+        // 函数可作为另一个函数的返回值
+        function sayHello() {
+            function hi() {
+                console.log("hi sari")
+            }
+            return hi
+        }
+        var fn = sayHello()
+        fn()
+
+        // 函数存储在另一个数据结构中
+        var object = {
+            name: 'superb',
+            eating: function() {
+                console.log("eat foot")
+            }
+        }
+        object.eating()
+        
+    </script>
+</body>
+</html>

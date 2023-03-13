@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+
+    
+    <script>
+        /*
+            DOMContentLoaded----->HTML内容加载完毕，并构建了DOM树，但像<img>和样式表之类的外部资源可能尚未加载完成
+            load----->文档中所有资源都加载完
+        */
+        // 注册事件监听
+        window.addEventListener("DOMContentLoaded", function() {
+            // console.log("HTML内容加载完毕")
+
+            var imgEl = document.querySelector("img")
+            console.log("图片的宽度和高度", imgEl.offsetHeight, imgEl.offsetWidth)
+        })
+
+        window.onload = function() {
+            // var boxEl = document.querySelector(".box")
+            // boxEl.style.backgroundColor = "red"
+            console.log("文档中所有资源都加载完")
+            // var imgEl = document.querySelector("img")
+            // console.log("图片的宽度和高度", imgEl.offsetHeight, imgEl.offsetWidth)
+        }
+
+
+    </script>
+
+    <div class="box">
+        <p>p的内容</p>
+    </div>
+    <a href="#">百度一下</a>
+    <img src="./证件照/1.png" alt="">
+
+
+</body>
+</html>

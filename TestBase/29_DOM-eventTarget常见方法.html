@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <button class="btn">按钮</button>
+
+
+    <script>
+        /*
+            EventTarget是一个DOM接口，主要用于添加、删除、派发Event事件
+        */
+
+        var btnEl = document.querySelector(".btn")
+
+        // 1.移除监听函数
+        var foo = function() {
+            console.log("按钮被点击啦")
+        }
+        btnEl.addEventListener("click", foo)
+
+        setTimeout(() => {
+            btnEl.removeEventListener("click", foo)
+        }, 3000);
+
+        // eventTarget可以实现类似于事件总线的效果
+        window.addEventListener("superb", function() {
+            console.log("监听到superb事件")
+        })
+
+        setTimeout(() => {
+            window.dispatchEvent(new Event("superb"))   // dispatchEvent()：事件派发
+        }, 3000);
+    </script>
+</body>
+</html>

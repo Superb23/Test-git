@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <button>打开新的网页</button>
+    <button>替换新的网页</button>
+    <button>页面重新加载</button>
+
+    <script>
+        // 完整的URL
+        console.log(location.href)
+
+        // 获取URL信息
+        console.log(location.hostname)
+        console.log(location.host)  // 主机名+端口号
+        console.log(location.protocol)  // 协议
+        console.log(location.port)  // 端口
+        console.log(location.pathname)  // 路径
+        console.log(location.search)    // 查询字符串   ?name=why&age=18
+        console.log(location.hash)  // 哈希值   #home
+
+        // location方法
+        var btnEls = document.querySelectorAll("button")
+        btnEls[0].onclick = function() {
+            location.assign("https://www.baidu.com")    // 打开，可返回原网页
+        }
+        
+        btnEls[1].onclick = function() {
+            location.replace("https://www.baidu.com")   // 替换，无法返回原网页
+        }
+
+        btnEls[2].onclick = function() {
+            location.reload("https://www.baidu.com")    // 刷新
+        }
+
+
+        // URLSearchParams
+        var urlSearchString = "?name=why&age=18"
+        // 自动解析查询字符串
+        var searchParams = new URLSearchParams(urlSearchString) 
+        console.log(searchParams.get("name"))
+        console.log(searchParams.get("age"))
+
+        searchParams.append("height", "1.75")   // 添加查询字符串
+        console.log(searchParams.get("height"))
+        console.log(searchParams.toString())
+    </script>
+</body>
+</html>
